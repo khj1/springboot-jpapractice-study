@@ -1,0 +1,36 @@
+spring:
+#  datasource:
+
+    # 다음과 같이 바꿔주면 데이터베이스가 메모리 모드로 동작을 한다.
+    # 테스트를 하는동안 DB를 메모리에 올려두고 사용한다음 메모리를 다시 내리는 방식
+    # 이러면 DB와의 연결이 끊어져도 DB와 관련된 test를 진행할 수 있다.
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#
+#  jpa:
+#    hibernate:
+#      test에서는 기본적으로 create-drop 방식으로 동작한다.
+#         create는 내가 가진 Entity를 모두 드랍하고 애플리케이션을 동작시킨다.
+#         create-drop는 create와 기본적으로 동일하지만 애플리케이션 종료 시점에
+#              drop 쿼리를 다 날려준다.
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        format_sql: true
+#
+#
+# 스프링 부트는 특정한 세팅이 되어있지 않으면 자동으로 메모리 모드로 동작한다.
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+
+
+server:
+  port: 9090

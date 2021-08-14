@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://lolup-rds1.c7qm67jnhiks.ap-northeast-2.rds.amazonaws.com/lolup
+    username: admin
+    password: lolup1234
+    driver-class-name: org.mariadb.jdbc.Driver
+
+
+  jpa:
+    hibernate:
+      # ddl; data definition language
+      ddl-auto: create # 이 옵션은 애플리케이션 실행 시점에 테이블을 drop 하고, 다시 생성한다.
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug # logger를 통해 하이버네이트 실행 SQL을 남긴다.
+#    org.hibernate.type: trace
