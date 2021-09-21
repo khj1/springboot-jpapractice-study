@@ -1,8 +1,8 @@
 package jpabook.jpashop_practice.service;
 
+import jpabook.jpashop_practice.domain.Book;
 import jpabook.jpashop_practice.domain.Item;
 import jpabook.jpashop_practice.repository.ItemRepository;
-import jpabook.jpashop_practice.web.ItemDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +17,15 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     @Transactional
-    public void saveOrUpdate(Item item) {
-        itemRepository.saveOrUpdate(item);
+    public void save(Item item) {
+        itemRepository.save(item);
+    }
+
+    // 예제 단순화를 위해 이름, 가격, 재고 데이터만 변경하도록 설정
+    @Transactional
+    public void updateItem(Long itemId, Book book) {
+        Item findItem = itemRepository.findOne(itemId);
+        findItem.updateItem(book);
     }
 
     public List<Item> findItems() {

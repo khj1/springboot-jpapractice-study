@@ -1,5 +1,6 @@
 package jpabook.jpashop_practice.repository;
 
+import jpabook.jpashop_practice.domain.Book;
 import jpabook.jpashop_practice.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,12 +14,8 @@ public class ItemRepository {
 
     private final EntityManager em;
 
-    public void saveOrUpdate(Item item) {
-        if (item.getId() == null) {
-            em.persist(item);
-        } else {
-            em.merge(item);
-        }
+    public void save(Item item) {
+        em.persist(item);
     }
 
     public Item findOne(Long id) {
