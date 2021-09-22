@@ -12,9 +12,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_batch_fetch_size: 100
 
 
 logging:
   level:
     org.hibernate.SQL: debug # logger를 통해 하이버네이트 실행 SQL을 남긴다.
-    org.hibernate.type: trace
+#    org.hibernate.type: trace
