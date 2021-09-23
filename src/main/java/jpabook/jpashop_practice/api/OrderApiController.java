@@ -9,6 +9,7 @@ import jpabook.jpashop_practice.repository.order.query.OrderFlatDto;
 import jpabook.jpashop_practice.repository.order.query.OrderItemQueryDto;
 import jpabook.jpashop_practice.repository.order.query.OrderQueryDto;
 import jpabook.jpashop_practice.repository.order.query.OrderQueryRepository;
+import jpabook.jpashop_practice.service.query.OrderQueryService;
 import jpabook.jpashop_practice.web.OrderSearch;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -28,18 +28,12 @@ public class OrderApiController {
 
     private final OrderRepository orderRepository;
     private final OrderQueryRepository orderQueryRepository;
+    private final OrderQueryService orderQueryService;
 
+    // OrderQueryService를 사용해서 커맨드와 쿼리를 분리
     @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
-        List<Order> all = orderRepository.findAllByCriteria(new OrderSearch());
-        for (Order order : all) {
-            order.getMember().getName();
-            order.getDelivery().getAddress();
-
-            List<OrderItem> orderItems = order.getOrderItems();
-            orderItems.stream().forEach(o -> o.getItem().getName());
-        }
-        return all;
+        return orderQueryService.ordersV1();
     }
 
     @GetMapping("/api/v2/orders")
